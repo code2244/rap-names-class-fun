@@ -1,3 +1,4 @@
+//modules
 const express = require('express') //access to express
 const app = express() 
 const cors = require('cors')
@@ -22,10 +23,12 @@ const rappers = {
         'birthLocation': 'Dylan'
     },
 }
+//Request of default file 
 app.get('/', (request, response)=>{ 
     response.sendFile(__dirname + '/index.html')
 })
 
+//Get query parameter 
 app.get('/api/:rapperName', (request, response) => {
     console.log(request.params.rapperName)
     const rappersName = request.params.rapperName.toLowerCase()
@@ -36,6 +39,7 @@ app.get('/api/:rapperName', (request, response) => {
     }
 })
 
+//listen to any port heroku
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`The server is running on port ${PORT}! You better go catch it!`)
 })
